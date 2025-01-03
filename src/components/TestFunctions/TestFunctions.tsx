@@ -1,40 +1,28 @@
 export default function TestFunctions() {
-  // Index Properties
-  interface ErrorContainer {
-    [prop: string]: string;
-  }
+  // Generic Types
 
-  // Function Overloads
+  const names: Array<string> = ["Alice", "Bob", "Charlie", "Dora", "Eve"];
+  // Array<string> is the same as string[]
 
-  type Combinable = string | number;
+  const promise: Promise<string> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("This promise is resolved!");
+    }, 2000);
+  });
 
-  const a: Combinable;
-  const b: Combinable;
+  promise.then(data => {
+    console.log(data.split(" "));
+  });
 
-  function add(a: number, b: number): number;
-  function add(a: string, b: string): string;
-  const add = (a: Combinable, b: Combinable) => {
-    return typeof a === "string" || typeof b === "string" ? a.toString() + b.toString() : a + b;
+  const objA: object = { name: "Coolbox" };
+  const objB: object = { age: 30 };
+
+  const objMerge = <T extends object, U extends object>(objA: T, objB: U) => {
+    return Object.assign(objA, objB);
   };
 
-  const result = add("Anton", "T");
-
-  result.split(" ");
-
-  // Chaining Methods
-
-  const userData = {
-    id: "u1",
-    name: "Anton",
-    job: { title: "CEO", description: "My own company" },
-  };
-
-  console.log(userData.job?.description, userData.job?.title);
-
-  // NUllish Coalescing with "??" operator
-
-  const userInput = null;
-  const storedData = userInput ?? "DEFAULT";
+  const resultObj = objMerge(objA, objB);
+  console.log(resultObj);
 
   return (
     <>
