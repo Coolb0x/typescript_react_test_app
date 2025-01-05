@@ -141,6 +141,82 @@ type Admin = {
     const userInput = null;
     const storedData = userInput ?? "DEFAULT";
   
+      // Generic Types
+
+  const names: Array<string> = ["Alice", "Bob", "Charlie", "Dora", "Eve"];
+  // Array<string> is the same as string[]
+
+  const promise: Promise<string> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("This promise is resolved!");
+    }, 2000);
+  });
+
+  promise.then(data => {
+    console.log(data.split(" "));
+  });
+
+  const objA: object = { name: "Coolbox" };
+  const objB: object = { age: 30 };
+
+  const objMerge = <T extends object, U extends object>(objA: T, objB: U) => {
+    return Object.assign(objA, objB);
+  };
+
+  const resultObj = objMerge(objA, objB);
+  console.log(resultObj);
+
+  const extractObjKey = <T extends object, U extends keyof T>(obj: T, key: U) => {
+    return obj[key];
+  };
+
+  const checker = extractObjKey(objA, "name");
+
+  class DataStorage<T extends string | number | boolean> {
+    //If an object is passed, it will throw an error
+    private data: T[] = [];
+
+    addItem(item: T) {
+      this.data.push(item);
+    }
+
+    removeItem(item: T) {
+      this.data.splice(this.data.indexOf(item), 1);
+    }
+
+    getItems() {
+      return [...this.data];
+    }
+  }
+
+  const textStorage = new DataStorage<string>();
+  textStorage.addItem("Alice");
+  textStorage.addItem("Bob");
+
+  const numberStorage = new DataStorage<number>();
+  numberStorage.addItem(1);
+
+  // Generic Utility Types
+
+  interface CourseGoal {
+    title: string;
+    description: string;
+    completeUntil: Date;
+  }
+
+  const createCourseGoal = (title: string, description: string, date: Date): CourseGoal => {
+    const courseGoal: Partial<CourseGoal> = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal as CourseGoal;
+  };
+
+  const courseGoal = createCourseGoal("React", "Learn React", new Date());
+
+  const readNames: Readonly<string[]> = ["Alice", "Bob", "Charlie", "Dora", "Eve"];
+  // readNames.push("Frank"); // Error
+
 
     return
     <>
