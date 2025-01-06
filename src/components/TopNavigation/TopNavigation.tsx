@@ -9,7 +9,12 @@ import Menu from "@mui/material/Menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TopNavigation({ pageName }: { pageName: string }) {
+interface TopNavigationProps {
+  pageName: string;
+  topNavigationPageName: (pageName: string) => void;
+}
+
+export default function TopNavigation({ pageName, topNavigationPageName }: TopNavigationProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -18,6 +23,11 @@ export default function TopNavigation({ pageName }: { pageName: string }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleMenuItemClick = (selectedPage: string) => {
+    topNavigationPageName(selectedPage);
+    handleClose();
   };
 
   return (
@@ -48,14 +58,14 @@ export default function TopNavigation({ pageName }: { pageName: string }) {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleMenuItemClick("/")}>
               <Link to='/'>Home</Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleMenuItemClick("/dragdropproject")}>
               <Link to='/dragdropproject'>Drag & Drop Project</Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/users'>Users</Link>
+            <MenuItem onClick={() => handleMenuItemClick("/anotherpage")}>
+              <Link to='/users'>Another Page</Link>
             </MenuItem>
           </Menu>
           <Typography align='left' variant='h6' component='div' sx={{ flexGrow: 1 }}>
