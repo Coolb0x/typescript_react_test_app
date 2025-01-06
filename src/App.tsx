@@ -6,20 +6,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import TestFunctions from "./components/TestFunctions/TestFunctions";
 import TopNavigation from "./components/TopNavigation/TopNavigation";
 import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
+import DragDropProj from "./components/DragDropProj/DragDropProj";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   const [count, setCount] = useState(0);
   const [pageName, setPageName] = useState("Home");
-
-  function Home() {
-    setPageName("Home");
-    return <h2>Home</h2>;
-  }
-
-  function About() {
-    setPageName("About");
-    return <h2>About</h2>;
-  }
 
   function Users() {
     setPageName("Users");
@@ -27,7 +19,7 @@ function App() {
   }
 
   return (
-    <>
+    <Router>
       <ScopedCssBaseline>
         <TopNavigation pageName={pageName} />
       </ScopedCssBaseline>
@@ -48,32 +40,27 @@ function App() {
       </div>
       <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
       <TestFunctions />
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              <li>
-                <Link to='/about'>About</Link>
-              </li>
-              <li>
-                <Link to='/users'>Users</Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* A <Routes> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-          <Routes>
-            <Route path='/about' element={<About />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/' element={<Home />} />
-          </Routes>
-        </div>
-      </Router>
-    </>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/dragdropproject'>Drag and Drop</Link>
+            </li>
+            <li>
+              <Link to='/users'>Users</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path='/dragdropproject' element={<DragDropProj />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
