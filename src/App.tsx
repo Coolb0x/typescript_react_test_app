@@ -4,24 +4,33 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import TestFunctions from "./components/TestFunctions/TestFunctions";
+import TopNavigation from "./components/TopNavigation/TopNavigation";
+import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [pageName, setPageName] = useState("Home");
 
   function Home() {
+    setPageName("Home");
     return <h2>Home</h2>;
   }
 
   function About() {
+    setPageName("About");
     return <h2>About</h2>;
   }
 
   function Users() {
+    setPageName("Users");
     return <h2>Users</h2>;
   }
 
   return (
     <>
+      <ScopedCssBaseline>
+        <TopNavigation pageName={pageName} />
+      </ScopedCssBaseline>
       <div>
         <a href='https://vite.dev' target='_blank'>
           <img src={viteLogo} className='logo' alt='Vite logo' />
