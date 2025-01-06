@@ -217,6 +217,34 @@ type Admin = {
   const readNames: Readonly<string[]> = ["Alice", "Bob", "Charlie", "Dora", "Eve"];
   // readNames.push("Frank"); // Error
 
+    // Decorators
+
+    function Logger(logstring: string) {
+      return function (constructor: Function) {
+        console.log("Logging...");
+        console.log(logstring);
+        console.log(constructor);
+      };
+    }
+    @Logger("LOGGING - PERSON")
+    class Person {
+      constructor() {
+        console.log("Creating a person object...");
+      }
+    }
+  
+    const newPerson = new Person();
+
+
+function HtmlTemplate (template: string, elementId: string) {
+  return function (_: Function) {
+    const element = document.getElementById(elementId)!;
+    element.innerHTML = template;
+  };
+}
+
+@HtmlTemplate("<h3>Created with Decorator Function</h3>", "decorator")
+
 
     return
     <>
