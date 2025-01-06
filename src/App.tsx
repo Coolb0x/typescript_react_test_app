@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import TestFunctions from "./components/TestFunctions/TestFunctions";
 
 function App() {
@@ -55,19 +55,13 @@ function App() {
             </ul>
           </nav>
 
-          {/* A <Switch> looks through its children <Route>s and
+          {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path='/about'>
-              <About />
-            </Route>
-            <Route path='/users'>
-              <Users />
-            </Route>
-            <Route path='/'>
-              <Home />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path='/about' element={<About />} />
+            <Route path='/users' element={<Users />} />
+            <Route path='/' element={<Home />} />
+          </Routes>
         </div>
       </Router>
     </>
