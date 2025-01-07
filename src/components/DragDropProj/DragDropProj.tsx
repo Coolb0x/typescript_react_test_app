@@ -1,28 +1,52 @@
 // Check instructions https://react-code-block.netlify.app/usage
 
 import { CodeBlock } from "react-code-block";
+import "./DragDropProj.css";
 
 export default function DragDropProj() {
   const code: string = `
-    const welcomeMessage = "Hello,";
-    let target = "world!";
-    
-    function greet(target) {
-      console.log(welcomeMessage + " " + target);
+function App() {
+  //Passing page name to TopNavigation component via props
+  const [pageName, setPageName] = useState("Home");
+
+  const topNavigationPageName = (selectedPage: string) => {
+    switch (selectedPage) {
+      case "/":
+        setPageName("Home");
+        break;
+      case "/dragdropproject":
+        setPageName("Drag & Drop Project");
+        break;
+      case "/users":
+        setPageName("Users");
+        break;
+      default:
+        setPageName("Home");
     }
-    
-    greet(target);
-    
-    for (let i = 0; i < 5; i++) {
-      console.log("Count: {i}");
-    }
+  };
+
+  return (
+    <Router>
+      <ScopedCssBaseline>
+        <TopNavigation pageName={pageName} topNavigationPageName={topNavigationPageName} />
+      </ScopedCssBaseline>
+      <Routes>
+        <Route path='/dragdropproject' element={<DragDropProj />} />
+
+        <Route path='/' element={<HomePage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
     `;
   const language: string = "js";
 
   return (
     <>
       <CodeBlock code={code} language={language}>
-        <CodeBlock.Code className='bg-black'>
+        <CodeBlock.Code className='codeBlock'>
           <CodeBlock.LineContent>
             <CodeBlock.Token />
           </CodeBlock.LineContent>

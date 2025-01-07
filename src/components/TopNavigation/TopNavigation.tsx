@@ -32,7 +32,7 @@ export default function TopNavigation({ pageName, topNavigationPageName }: TopNa
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+      <AppBar sx={{ borderRadius: "9px" }} position='static'>
         <Toolbar>
           <IconButton
             onClick={handleMenu}
