@@ -1,26 +1,26 @@
 export default function TestFunctions() {
   // Decorators
 
-  const Log = (target: any, propertyName: string | symbol) => {
+  const Log = (target: unknown, propertyName: string | symbol) => {
     console.log("Property decorator!");
     console.log(target, propertyName);
   };
 
-  const Log2 = (target: any, name: string, descriptor: PropertyDescriptor) => {
+  const Log2 = (target: unknown, name: string, descriptor: PropertyDescriptor) => {
     console.log("Accessor decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
   };
 
-  const Log3 = (target: any, name: string | symbol, descriptor: PropertyDescriptor) => {
+  const Log3 = (target: unknown, name: string | symbol, descriptor: PropertyDescriptor) => {
     console.log("Method decorator!");
     console.log(target);
     console.log(name);
     console.log(descriptor);
   };
 
-  const Log4 = (target: any, name: string | symbol, position: number) => {
+  const Log4 = (target: unknown, name: string | symbol, position: number) => {
     console.log("Parameter decorator!");
     console.log(target);
     console.log(name);
