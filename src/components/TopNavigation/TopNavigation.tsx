@@ -64,8 +64,8 @@ export default function TopNavigation({ pageName, topNavigationPageName }: TopNa
             <MenuItem onClick={() => handleMenuItemClick("/dragdropproject")}>
               <Link to='/dragdropproject'>Drag & Drop Project</Link>
             </MenuItem>
-            <MenuItem onClick={() => handleMenuItemClick("/anotherpage")}>
-              <Link to='/users'>Another Page</Link>
+            <MenuItem onClick={() => handleMenuItemClick("/codeblocks")}>
+              <Link to='/codeblocks'>Code Block</Link>
             </MenuItem>
           </Menu>
           <Typography align='left' variant='h6' component='div' sx={{ flexGrow: 1 }}>

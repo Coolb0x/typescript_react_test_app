@@ -1,12 +1,10 @@
-import { useState } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TopNavigation from "./components/TopNavigation/TopNavigation";
-import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
-import DragDropProj from "./components/DragDropProj/DragDropProj";
-import HomePage from "./components/HomePage/HomePage";
-import CodeBlocks from "./components/CodeBlock/CodeBlock";
+// Check instructions https://react-code-block.netlify.app/usage
 
+import { CodeBlock } from "react-code-block";
+import "./CodeBlock.css";
+
+export default function CodeBlocks() {
+  const code: string = `
 function App() {
   //Passing page name to TopNavigation component via props
   const [pageName, setPageName] = useState("Home");
@@ -19,8 +17,8 @@ function App() {
       case "/dragdropproject":
         setPageName("Drag & Drop Project");
         break;
-      case "/codeblocks":
-        setPageName("Code Blocks");
+      case "/users":
+        setPageName("Users");
         break;
       default:
         setPageName("Home");
@@ -34,7 +32,6 @@ function App() {
       </ScopedCssBaseline>
       <Routes>
         <Route path='/dragdropproject' element={<DragDropProj />} />
-        <Route path='/codeblocks' element={<CodeBlocks />} />
 
         <Route path='/' element={<HomePage />} />
       </Routes>
@@ -43,3 +40,18 @@ function App() {
 }
 
 export default App;
+    `;
+  const language: string = "js";
+
+  return (
+    <>
+      <CodeBlock code={code} language={language}>
+        <CodeBlock.Code className='codeBlock'>
+          <CodeBlock.LineContent>
+            <CodeBlock.Token />
+          </CodeBlock.LineContent>
+        </CodeBlock.Code>
+      </CodeBlock>
+    </>
+  );
+}
