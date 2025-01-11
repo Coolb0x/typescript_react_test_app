@@ -4,28 +4,18 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import AbcIcon from "@mui/icons-material/Abc";
 import DescriptionIcon from "@mui/icons-material/Description";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useState } from "react";
 
-export default function InputForm() {
-  // Did a mistake with the state, it is not updated if form is empty or null
-  // and since the component does not re-render, the form is not cleared
-  // and hence a null loop can't be cleared
+// How to get the drag-drop https://www.geeksforgeeks.org/implement-drag-and-drop-using-react-component/
+interface Project {
+  title: string;
+  people: string;
+  description: string;
+}
+interface InputFormProps {
+  setNewProject: (newProject: Project) => void;
+}
 
-  interface Project {
-    title: string;
-    people: string;
-    description: string;
-  }
-
-  const [projects, setProjects] = useState<Project[]>([
-    { title: "A new Big Title", people: "Myself", description: "A great new description is on it's way" },
-  ]);
-
-  const setNewProject = (newProject: Project) => {
-    setProjects([...projects, newProject]);
-  };
-
+export default function InputForm({ setNewProject }: InputFormProps) {
   const getFormDetails = () => {
     const titleEl = document.getElementById("title") as HTMLTextAreaElement;
     const peopleEl = document.getElementById("people") as HTMLTextAreaElement;
@@ -98,44 +88,6 @@ export default function InputForm() {
           <Button onClick={getFormDetails} variant='outlined'>
             Add Project
           </Button>
-        </div>
-      </Box>
-      <Typography sx={{ mt: "31px", mb: "51px" }} variant='h5' gutterBottom>
-        List of new projects
-      </Typography>
-      <Box
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-          border: "1px solid",
-          borderColor: "rgba(0, 0, 0, 0.6)",
-          borderRadius: "9px",
-          p: 5,
-          mt: 5,
-        }}>
-        <div>
-          {projects.map((project, index) => {
-            return (
-              <div key={index}>
-                <div>{`Title: ${project.title} People: ${project.people} Description: ${project.description}`}</div>
-              </div>
-            );
-          })}
-        </div>
-      </Box>
-      <Typography sx={{ mt: "31px", mb: "51px" }} variant='h5' gutterBottom>
-        List of completed projects
-      </Typography>
-      <Box
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-          border: "1px solid",
-          borderColor: "rgba(0, 0, 0, 0.6)",
-          borderRadius: "9px",
-          p: 5,
-          mt: 5,
-        }}>
-        <div>
-          <p>List of completed projects </p>
         </div>
       </Box>
     </>
