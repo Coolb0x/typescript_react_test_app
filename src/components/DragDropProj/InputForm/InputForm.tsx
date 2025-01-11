@@ -4,6 +4,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import AbcIcon from "@mui/icons-material/Abc";
 import DescriptionIcon from "@mui/icons-material/Description";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
 export default function InputForm() {
@@ -11,18 +12,18 @@ export default function InputForm() {
   // and since the component does not re-render, the form is not cleared
   // and hence a null loop can't be cleared
 
-  const [projects, setProjects] = useState([
+  interface Project {
+    title: string;
+    people: string;
+    description: string;
+  }
+
+  const [projects, setProjects] = useState<Project[]>([
     { title: "A new Big Title", people: "Myself", description: "A great new description is on it's way" },
   ]);
 
-  const setNewProject = (newProject: { title: string; people: string; description: string }) => {
+  const setNewProject = (newProject: Project) => {
     setProjects([...projects, newProject]);
-  };
-
-  const clearFormDetails = newProkect => {
-    titleEl.value = "";
-    peopleEl.value = "";
-    descriptionEl.value = "";
   };
 
   const getFormDetails = () => {
@@ -31,18 +32,21 @@ export default function InputForm() {
     const descriptionEl = document.getElementById("description") as HTMLTextAreaElement;
     // Check if the form is empty
     if (titleEl.value !== "" || peopleEl.value !== "" || descriptionEl.value !== "") {
-      const newDetails = {
+      const newDetails: Project = {
         title: titleEl.value,
         people: peopleEl.value,
         description: descriptionEl.value,
       };
       setNewProject(newDetails);
-      clearFormDetails(newProkect);
     }
     // If the form is empty, alert the user
     else {
       alert("All fields should be filled to create the project");
     }
+    // Clear the form after submission BUT have to add it in state!!
+    titleEl.value = "";
+    peopleEl.value = "";
+    descriptionEl.value = "";
   };
 
   return (
@@ -96,6 +100,9 @@ export default function InputForm() {
           </Button>
         </div>
       </Box>
+      <Typography sx={{ mt: "31px", mb: "51px" }} variant='h5' gutterBottom>
+        List of new projects
+      </Typography>
       <Box
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
@@ -113,6 +120,22 @@ export default function InputForm() {
               </div>
             );
           })}
+        </div>
+      </Box>
+      <Typography sx={{ mt: "31px", mb: "51px" }} variant='h5' gutterBottom>
+        List of completed projects
+      </Typography>
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          border: "1px solid",
+          borderColor: "rgba(0, 0, 0, 0.6)",
+          borderRadius: "9px",
+          p: 5,
+          mt: 5,
+        }}>
+        <div>
+          <p>List of completed projects </p>
         </div>
       </Box>
     </>
