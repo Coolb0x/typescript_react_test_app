@@ -6,6 +6,7 @@ import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 import DragDropProj from "./components/DragDropProj/DragDropProj";
 import HomePage from "./components/HomePage/HomePage";
 import CodeBlocks from "./components/CodeBlock/CodeBlock";
+import SelectAndShare from "./components/SelectAndShare/SelectAndShare";
 
 function App() {
   //Passing page name to TopNavigation component via props
@@ -22,6 +23,9 @@ function App() {
       case "/codeblocks":
         setPageName("Code Blocks");
         break;
+      case "/selectandshare":
+        setPageName("Select & Share");
+        break;
       default:
         setPageName("Home");
     }
@@ -35,7 +39,7 @@ function App() {
       <Routes>
         <Route path='/dragdropproject' element={<DragDropProj />} />
         <Route path='/codeblocks' element={<CodeBlocks />} />
-
+        <Route path='/selectandshare' element={<SelectAndShare />} />
         <Route path='/' element={<HomePage />} />
       </Routes>
     </Router>
