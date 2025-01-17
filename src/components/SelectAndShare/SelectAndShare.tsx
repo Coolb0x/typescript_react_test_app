@@ -7,7 +7,6 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function SelectAndShare() {
-  const [address, setAddress] = useState({ lat: 42.4232792, lng: 25.6334291 });
   const [inputAddress, setInputAddress] = useState("");
   const googleApiKey = "AIzaSyDCUgbDNPrYAnY0u3v-D2qt-KdzGEDnbG0";
 
@@ -34,8 +33,7 @@ export default function SelectAndShare() {
       const response = await axios.get(Url);
       const data = response.data.results[0].geometry.location;
 
-      setAddress(data);
-      console.log(data); // Logs the updated coordinates
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
