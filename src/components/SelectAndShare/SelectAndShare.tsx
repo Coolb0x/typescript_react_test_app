@@ -20,19 +20,21 @@ export default function SelectAndShare() {
       version: "weekly",
     });
 
-    loader
-      .load()
-      .then(() => {
+    const initializeMap = async () => {
+      try {
+        await loader.load();
         if (mapRef.current && !mapInstance.current) {
           mapInstance.current = new google.maps.Map(mapRef.current, {
             center: address,
             zoom: 13,
           });
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error("Error loading Google Maps:", error);
-      });
+      }
+    };
+
+    initializeMap();
   }, [googleApiKey, address]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,6 @@ export default function SelectAndShare() {
           map: mapInstance.current,
         });
       }
-      console.log(data);
     } catch (error) {
       console.error("Error fetching coordinates:", error);
     }
