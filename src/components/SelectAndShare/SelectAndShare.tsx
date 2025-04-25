@@ -10,7 +10,7 @@ import { useState, useRef, useEffect } from "react";
 export default function SelectAndShare() {
   const [inputAddress, setInputAddress] = useState("");
   const [address, setAddress] = useState({ lat: -34.397, lng: 150.644 });
-  const googleApiKey = "AIzaSyDCUgbDNPrYAnY0u3v-D2qt-KdzGEDnbG0";
+  const googleApiKey = "***";
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<google.maps.Map | null>(null);
 
